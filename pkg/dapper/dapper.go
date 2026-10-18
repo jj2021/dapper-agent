@@ -28,6 +28,35 @@ type ollamaResponseMsg struct {
 	Content string `json:"content"`
 }
 
+type ollamaChatRequest struct {
+	Model string
+	Messages
+}
+
+type ollamaMessages struct {
+	Role string
+	Content string
+	Thinking string
+	ToolCalls []ollamaToolCall
+	ToolName string
+	ToolCallID string
+}
+
+type ollamaToolCall struct {
+	ID string
+	ToolCall ollamaToolCallFunction
+}
+
+type ollamaToolCallFunction struct {
+	Index int
+	Name string
+	Arguments ollamaToolCallArguments
+}
+
+type ollamaToolCallArguments struct {
+	Args map[string]string
+}
+
 func Run() {
 	fmt.Printf("G'day... How may I be of assistance?\n\n")
 
